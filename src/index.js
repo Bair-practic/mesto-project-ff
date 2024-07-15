@@ -1,40 +1,28 @@
 import './pages/index.css'
-import {initialCards} from './scripts/cards.js'
+import { initialCards } from './components/cards.js'
+import { createCard, deleteCard } from './components/card.js'
+import { openModal, closeModal  } from './components/modal.js';
 
-console.log('Hello, World!');
-// @todo: Темплейт карточки
+
 const cardList = document.querySelector('.places__list');
-const cardTemplate = document.querySelector('#card-template').content;
-const addButton = document.querySelector('.profile__add-button');
+
+const addCardButton = document.querySelector('.profile__add-button');
+const addCardpopup = document.querySelector('.popup_type_new-card');
+const editProfilePopup = document.querySelector('.popup_type_edit');
+const editProfileButton = document.querySelector('.profile__edit-button');
 
 initialCards.forEach(cardData => {
     const card = createCard(cardData, deleteCard);
     cardList.append(card);
-
+    console.log(card);
 });
-function createCard(cardData, deleteHandler){ 
-    const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-    const deleteBtn = cardElement.querySelector('.card__delete-button');
-    const cardImg = cardElement.querySelector('.card__image');
-    cardElement.querySelector('.card__title').textContent = cardData.name;
-    cardImg.src = cardData.link;
-    cardImg.alt = cardData.name;
-    deleteBtn.addEventListener('click', function(event) {
-        deleteHandler(event);
-    });
-    return cardElement;
-}
-
-function deleteCard(event) {
-    const listItem = event.target.closest('.card');
-    listItem.remove()
-}
 
 
-// @todo: DOM узлы
+addCardButton.addEventListener('click',  function(evt){
+    openModal(addCardpopup);
+});
 
-// @todo: Функция создания карточки
+editProfileButton.addEventListener('click',  function(evt){
+    openModal(editProfilePopup);
+});
 
-// @todo: Функция удаления карточки
-
-// @todo: Вывести карточки на страницу

@@ -4,10 +4,11 @@ const cardTemplate = document.querySelector('#card-template').content;
 const imagePopup = document.querySelector('.popup_type_image');
 
 
-export function createCard(cardData, deleteHandler){ 
+export function createCard(cardData, deleteHandler, likeHandler){ 
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const deleteBtn = cardElement.querySelector('.card__delete-button');
     const cardImg = cardElement.querySelector('.card__image');
+    const likeBtn = cardElement.querySelector('.card__like-button');
     cardElement.querySelector('.card__title').textContent = cardData.name;
     cardImg.src = cardData.link;
     cardImg.alt = cardData.name;
@@ -23,10 +24,19 @@ export function createCard(cardData, deleteHandler){
         
     });
 
+    likeBtn.addEventListener('click', function(evt){
+        likeHandler(evt);
+    });
+
     return cardElement;
 }
 
 export function deleteCard(event) {
     const listItem = event.target.closest('.card');
     listItem.remove()
+}
+
+export function likeCard(evt){
+    console.log(evt);
+    evt.target.classList.toggle('card__like-button_is-active');
 }

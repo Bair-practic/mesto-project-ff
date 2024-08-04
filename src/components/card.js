@@ -37,6 +37,5 @@ export function deleteCard(event) {
 }
 
 export function likeCard(evt){
-    console.log(evt);
     evt.target.classList.toggle('card__like-button_is-active');
 }

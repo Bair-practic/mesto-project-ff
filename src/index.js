@@ -31,7 +31,6 @@ addCardButton.addEventListener('click',  function(evt){
 
     function handleFormSubmit(evt){
         evt.preventDefault();
-        console.log(linkInput.value);
         const cardData = {
             name: placeInput.value,
             link: linkInput.value 

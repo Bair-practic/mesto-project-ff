@@ -35,6 +35,8 @@ function handleAddCardFormSubmit(evt){
         link: linkInput.value
     };
     const newCard = createCard(cardData, openCardHandler, deleteCard, likeCard);
+    placeInput.value = '';
+    linkInput.value = '';
     cardList.prepend(newCard);
     closeModal(addCardPopup);
 };
@@ -49,13 +51,13 @@ function handleEditFormSubmit(evt) {
     closeModal(editProfilePopup);        
 }
 
-const imagePopupImg = imagePopup.querySelector('img');
-const imagePopupCaption = imagePopup.querySelector('p');
+const imagePopupImg = imagePopup.querySelector('.popup__image');
+const imagePopupCaption = imagePopup.querySelector('.popup__caption');
 
 function openCardHandler(evt){
-    imagePopupImg.setAttribute('src', evt.target.getAttribute('src'));
-    imagePopupImg.setAttribute('alt', evt.target.getAttribute('alt'));
-    imagePopupCaption.textContent = evt.target.getAttribute('alt');
+    imagePopupImg.src =  evt.target.src;
+    imagePopupImg.alt =  evt.target.alt;
+    imagePopupCaption.textContent = evt.target.alt;
     openModal(imagePopup);
 }
 
